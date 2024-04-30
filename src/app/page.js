@@ -53,6 +53,7 @@ export default function Profile() {
           />
         )}
         <div>Name: {profile.displayName}</div>
+        <div>Status: {profile.statusMessage}</div>
       </div>
     </section>
   );
