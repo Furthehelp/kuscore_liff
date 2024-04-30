@@ -2,6 +2,11 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import styles from "../../styles/login.module.css";
+
+import phoneman from "../../public/phoneman.png";
+import avatar from "../../public/avatar.png";
 
 const liffId = process.env.NEXT_PUBLIC_LIFF_ID;
 
@@ -20,7 +25,7 @@ export default function Profile() {
         console.error("LIFF initialization error:", error.message);
       }
     }
-    initializeLiff();
+    // initializeLiff();
   }, []);
 
   useEffect(() => {
@@ -36,6 +41,18 @@ export default function Profile() {
     }
     fetchProfile();
   }, []);
+
+  const handleFocus = (e) => {
+    e.target.parentNode.parentNode.classList.add(styles.focus);
+  };
+
+  const handleBlur = (e) => {
+    const { value } = e.target;
+    const parent = e.target.parentNode.parentNode;
+    if (value === "") {
+      parent.classList.remove(styles.focus);
+    }
+  };
 
   return (
     <section>
@@ -54,6 +71,60 @@ export default function Profile() {
         )}
         <div>Name: {profile.displayName}</div>
         <div>Status: {profile.statusMessage}</div>
+      </div>
+
+      <div className={styles.container}>
+        <div className={styles.img}>
+          <Image src={phoneman} alt="phoneman" width={500} height={415} />
+        </div>
+        <div className={styles.logincontent}>
+          <form className={styles.firstform}>
+            <Image src={avatar} alt="avatar" width={100} height={100} />
+            <h2>KU Score</h2>
+            <div className={`${styles.inputdiv} ${styles.one}`}>
+              <div className={styles.i}>
+                {/* <FontAwesomeIcon icon={faUser} /> */}
+              </div>
+              <div className={styles.div}>
+                <h5>Username</h5>
+                <input
+                  type="text"
+                  className={styles.input}
+                  // value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  required
+                />
+              </div>
+            </div>
+            <div className={`${styles.inputdiv} ${styles.pass}`}>
+              <div className={styles.i}>
+                {/* <FontAwesomeIcon rel="preload" icon={faLock} /> */}
+              </div>
+              <div className={styles.div}>
+                <h5>Password</h5>
+                <input
+                  type="password"
+                  className={styles.input}
+                  // value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  required
+                />
+              </div>
+            </div>
+            <button className={styles.btns} type="submit">
+              Login
+            </button>
+            <div className="d-flex justify-content-end">
+              <Link href="/" className={styles.firstlink}>
+                ลืมรหัสผ่าน ?
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
