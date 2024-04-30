@@ -30,9 +30,13 @@
 
 .logincontent img {
   height: 100px;
-  justify-content: flex-center;
+}
+
+.avatarcontainer {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
+  margin-bottom: 20px; /* Adjust as needed */
 }
 
 .logincontent h2 {
@@ -198,7 +202,7 @@
   }
 }
 
-.textname{
+.textname {
   color: var(--name-color);
 }
 

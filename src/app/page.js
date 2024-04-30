@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/login.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import phoneman from "../../public/phoneman.png";
 import avatar from "../../public/avatar.png";
@@ -56,9 +57,6 @@ export default function Profile() {
 
   return (
     <section>
-      <Head>
-        <title>My Profile</title>
-      </Head>
       <h1>Profile</h1>
       <div>
         {profile.pictureUrl && (
@@ -79,11 +77,13 @@ export default function Profile() {
         </div>
         <div className={styles.logincontent}>
           <form className={styles.firstform}>
-            <Image src={avatar} alt="avatar" width={100} height={100} />
+            <div className={styles.avatarcontainer}>
+              <Image src={avatar} alt="avatar" width={100} height={100} />
+            </div>
             <h2>KU Score</h2>
             <div className={`${styles.inputdiv} ${styles.one}`}>
               <div className={styles.i}>
-                {/* <FontAwesomeIcon icon={faUser} /> */}
+                <FontAwesomeIcon icon={faUser} />
               </div>
               <div className={styles.div}>
                 <h5>Username</h5>
@@ -100,7 +100,7 @@ export default function Profile() {
             </div>
             <div className={`${styles.inputdiv} ${styles.pass}`}>
               <div className={styles.i}>
-                {/* <FontAwesomeIcon rel="preload" icon={faLock} /> */}
+                <FontAwesomeIcon rel="preload" icon={faLock} />
               </div>
               <div className={styles.div}>
                 <h5>Password</h5>
@@ -118,7 +118,7 @@ export default function Profile() {
             <button className={styles.btns} type="submit">
               Login
             </button>
-            <div className="d-flex justify-content-end">
+            <div className="d-flex text-end">
               <Link href="/" className={styles.firstlink}>
                 ลืมรหัสผ่าน ?
               </Link>
