@@ -26,7 +26,7 @@ export default function Profile() {
         console.error("LIFF initialization error:", error.message);
       }
     }
-    // initializeLiff();
+    initializeLiff();
   }, []);
 
   useEffect(() => {
