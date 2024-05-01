@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["profile.line-scdn.net"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "profile.line-scdn.net",
+      },
+    ],
   },
 };
 

@@ -30,7 +30,7 @@ export default function Profile() {
         console.error("LIFF initialization error:", error.message);
       }
     }
-    initializeLiff();
+    // initializeLiff();
   }, []);
 
   useEffect(() => {
@@ -45,6 +45,11 @@ export default function Profile() {
       }
     }
     fetchProfile();
+    const { value } = document.querySelector("input");
+    const parent = document.querySelector("input").parentNode.parentNode;
+    if (value !== "") {
+      parent.classList.add(styles.focus);
+    }
   }, []);
 
   const handleFocus = (e) => {
@@ -60,108 +65,92 @@ export default function Profile() {
   };
 
   return (
-    <section>
-      {/* <h1>Profile</h1>
-      <div>
-        {profile.pictureUrl && (
-          <Image
-            src={profile.pictureUrl}
-            alt={profile.displayName}
-            width={500}
-            height={500}
-          />
-        )}
-        <div>Name: {profile.displayName}</div>
-        <div>Status: {profile.statusMessage}</div>
-      </div> */}
-
-      <div className={styles.container}>
-        <div className={styles.img}>
-          <Image src={phoneman} alt="phoneman" width={500} height={415} />
-        </div>
-        <div className={styles.logincontent}>
-          <form className={styles.firstform}>
-            <div className={styles.avatarcontainer}>
-              {profile.pictureUrl ? (
-                <Image
-                  src={profile.pictureUrl}
-                  alt={profile.displayName}
-                  width={100}
-                  height={100}
-                  className="rounded-full"
-                />
-              ) : (
-                <Image src={avatar} alt="avatar" width={100} height={100} />
-              )}
-            </div>
-            <h2>KU Score</h2>
-            <div className={`${styles.inputdiv} ${styles.one}`}>
-              <div className={styles.i}>
-                <FontAwesomeIcon icon={faUser} />
-              </div>
-              <div className={styles.div}>
-                <h5>Welcome</h5>
-                <input
-                  type="text"
-                  className={`${styles.input} ${styles.focus}`}
-                  value={profile.displayName}
-                  onChange={(e) => setUsername(e.target.value)}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  required
-                  // disabled
-                />
-              </div>
-            </div>
-            <div className={`${styles.inputdiv} ${styles.one}`}>
-              <div className={styles.i}>
-                <FontAwesomeIcon icon={faIdCard} />
-              </div>
-              <div className={styles.div}>
-                <h5>Student ID</h5>
-                <input
-                  pattern="b\d{10}"
-                  title="Please enter a valid student ID starting with 'b' followed by 10 digits"
-                  type="text"
-                  className={styles.input}
-                  // value={username}
-                  // onChange={(e) => setUsername(e.target.value)}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  required
-                />
-              </div>
-            </div>
-            <div className={`${styles.inputdiv} ${styles.pass}`}>
-              <div className={styles.i}>
-                <FontAwesomeIcon rel="preload" icon={faEnvelope} />
-              </div>
-              <div className={styles.div}>
-                <h5>Email</h5>
-                <input
-                  pattern=".+@ku\.th"
-                  title="Please enter a valid email address with domain @ku.th"
-                  type="email"
-                  className={styles.input}
-                  // value={password}
-                  // onChange={(e) => setPassword(e.target.value)}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  required
-                />
-              </div>
-            </div>
-            <button className={styles.btns} type="submit">
-              Link Account
-            </button>
-            <div className="d-flex text-end">
-              <Link href="/" className={styles.firstlink}>
-                ลืมรหัสผ่าน ?
-              </Link>
-            </div>
-          </form>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.img}>
+        <Image src={phoneman} alt="phoneman" width={500} height={415} />
       </div>
-    </section>
+      <div className={styles.logincontent}>
+        <form className={styles.firstform}>
+          <div className={styles.avatarcontainer}>
+            {profile.pictureUrl ? (
+              <Image
+                src={profile.pictureUrl}
+                alt={profile.displayName}
+                width={100}
+                height={100}
+                className="rounded-full"
+              />
+            ) : (
+              <Image src={avatar} alt="avatar" width={100} height={100} />
+            )}
+          </div>
+          <h2>KU Score</h2>
+          <div className={`${styles.inputdiv} ${styles.one}`}>
+            <div className={styles.i}>
+              <FontAwesomeIcon icon={faUser} />
+            </div>
+            <div className={styles.div}>
+              <h5>Welcome</h5>
+              <input
+                type="text"
+                className={`${styles.input}`}
+                value={profile.displayName}
+                // onChange={(e) => setUsername(e.target.value)}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+                disabled
+              />
+            </div>
+          </div>
+          <div className={`${styles.inputdiv} ${styles.one}`}>
+            <div className={styles.i}>
+              <FontAwesomeIcon icon={faIdCard} />
+            </div>
+            <div className={styles.div}>
+              <h5>Student ID</h5>
+              <input
+                pattern="b\d{10}"
+                title="Please enter a valid student ID starting with 'b' followed by 10 digits"
+                type="text"
+                className={styles.input}
+                // value={username}
+                // onChange={(e) => setUsername(e.target.value)}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              />
+            </div>
+          </div>
+          <div className={`${styles.inputdiv} ${styles.pass}`}>
+            <div className={styles.i}>
+              <FontAwesomeIcon rel="preload" icon={faEnvelope} />
+            </div>
+            <div className={styles.div}>
+              <h5>Email</h5>
+              <input
+                pattern=".+@ku\.th"
+                title="Please enter a valid email address with domain @ku.th"
+                type="email"
+                className={styles.input}
+                // value={password}
+                // onChange={(e) => setPassword(e.target.value)}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              />
+            </div>
+          </div>
+          <button className={styles.btns} type="submit">
+            Link Account
+          </button>
+          <div className="d-flex text-end">
+            <Link href="/" className={styles.firstlink}>
+              ลืมรหัสผ่าน ?
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
