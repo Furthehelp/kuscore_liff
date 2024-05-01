@@ -30,7 +30,7 @@ export default function Profile() {
         console.error("LIFF initialization error:", error.message);
       }
     }
-    initializeLiff();
+    // initializeLiff();
   }, []);
 
   useEffect(() => {
@@ -82,7 +82,17 @@ export default function Profile() {
         <div className={styles.logincontent}>
           <form className={styles.firstform}>
             <div className={styles.avatarcontainer}>
-              <Image src={avatar} alt="avatar" width={100} height={100} />
+              {profile.pictureUrl ? (
+                <Image
+                  src={profile.pictureUrl}
+                  alt={profile.displayName}
+                  width={100}
+                  height={100}
+                  className="rounded-full"
+                />
+              ) : (
+                <Image src={avatar} alt="avatar" width={100} height={100} />
+              )}
             </div>
             <h2>KU Score</h2>
             <div className={`${styles.inputdiv} ${styles.one}`}>
@@ -93,13 +103,13 @@ export default function Profile() {
                 <h5>Welcome</h5>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={`${styles.input} ${styles.focus}`}
                   value={profile.displayName}
-                  // onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setUsername(e.target.value)}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   required
-                  disabled
+                  // disabled
                 />
               </div>
             </div>
