@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/login.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faEnvelope,
+  faIdCard,
+} from "@fortawesome/free-solid-svg-icons";
 
 import phoneman from "../../public/phoneman.png";
 import avatar from "../../public/avatar.png";
@@ -57,7 +61,7 @@ export default function Profile() {
 
   return (
     <section>
-      <h1>Profile</h1>
+      {/* <h1>Profile</h1>
       <div>
         {profile.pictureUrl && (
           <Image
@@ -69,7 +73,7 @@ export default function Profile() {
         )}
         <div>Name: {profile.displayName}</div>
         <div>Status: {profile.statusMessage}</div>
-      </div>
+      </div> */}
 
       <div className={styles.container}>
         <div className={styles.img}>
@@ -86,12 +90,32 @@ export default function Profile() {
                 <FontAwesomeIcon icon={faUser} />
               </div>
               <div className={styles.div}>
-                <h5>Username</h5>
+                <h5>Welcome</h5>
                 <input
                   type="text"
                   className={styles.input}
+                  value={profile.displayName}
+                  // onChange={(e) => setUsername(e.target.value)}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  required
+                  disabled
+                />
+              </div>
+            </div>
+            <div className={`${styles.inputdiv} ${styles.one}`}>
+              <div className={styles.i}>
+                <FontAwesomeIcon icon={faIdCard} />
+              </div>
+              <div className={styles.div}>
+                <h5>Student ID</h5>
+                <input
+                  pattern="b\d{10}"
+                  title="Please enter a valid student ID starting with 'b' followed by 10 digits"
+                  type="text"
+                  className={styles.input}
                   // value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  // onChange={(e) => setUsername(e.target.value)}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   required
@@ -100,15 +124,17 @@ export default function Profile() {
             </div>
             <div className={`${styles.inputdiv} ${styles.pass}`}>
               <div className={styles.i}>
-                <FontAwesomeIcon rel="preload" icon={faLock} />
+                <FontAwesomeIcon rel="preload" icon={faEnvelope} />
               </div>
               <div className={styles.div}>
-                <h5>Password</h5>
+                <h5>Email</h5>
                 <input
-                  type="password"
+                  pattern=".+@ku\.th"
+                  title="Please enter a valid email address with domain @ku.th"
+                  type="email"
                   className={styles.input}
                   // value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  // onChange={(e) => setPassword(e.target.value)}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   required
@@ -116,7 +142,7 @@ export default function Profile() {
               </div>
             </div>
             <button className={styles.btns} type="submit">
-              Login
+              Link Account
             </button>
             <div className="d-flex text-end">
               <Link href="/" className={styles.firstlink}>
