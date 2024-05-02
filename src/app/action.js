@@ -28,6 +28,25 @@ export async function LinkAccount(formData) {
 
   const accessToken = process.env.LINE_ACCESS_TOKEN;
 
+  console.log(
+    "displayName:",
+    displayName,
+    "studentId:",
+    studentId,
+    "email:",
+    email,
+    "userId:",
+    userId,
+    "pictureUrl:",
+    pictureUrl,
+    "formattedDate:",
+    formattedDate,
+    "formattedTime:",
+    formattedTime,
+    "accessToken:",
+    accessToken
+  );
+
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${accessToken}`,
@@ -173,7 +192,7 @@ export async function LinkAccount(formData) {
 
   const body = {
     to: userId,
-    messages: message,
+    messages: [message],
   };
 
   try {
