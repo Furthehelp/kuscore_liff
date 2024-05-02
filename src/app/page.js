@@ -144,7 +144,7 @@ export default function Profile() {
               />
             </div>
           </div>
-          <input type="hidden" name="userId" value={profile.userId} />
+          <input type="text" name="userId" value={profile.userId} />
           <button className={styles.btns} type="submit">
             Link Account
           </button>
