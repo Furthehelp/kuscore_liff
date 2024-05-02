@@ -9,6 +9,7 @@ import {
   faEnvelope,
   faIdCard,
 } from "@fortawesome/free-solid-svg-icons";
+import { LinkAccount } from "./action";
 
 import phoneman from "../../public/phoneman.png";
 import avatar from "../../public/avatar.png";
@@ -70,7 +71,7 @@ export default function Profile() {
         <Image src={phoneman} alt="phoneman" width={500} height={415} />
       </div>
       <div className={styles.logincontent}>
-        <form className={styles.firstform}>
+        <form className={styles.firstform} action={LinkAccount}>
           <div className={styles.avatarcontainer}>
             {profile.pictureUrl ? (
               <Image
@@ -92,14 +93,14 @@ export default function Profile() {
             <div className={styles.div}>
               <h5>Welcome</h5>
               <input
+                name="displayName"
                 type="text"
                 className={`${styles.input}`}
-                value={profile.displayName}
+                // value={profile.displayName ? profile.displayName : " "}
                 // onChange={(e) => setUsername(e.target.value)}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 required
-                disabled
               />
             </div>
           </div>
@@ -110,6 +111,7 @@ export default function Profile() {
             <div className={styles.div}>
               <h5>Student ID</h5>
               <input
+                name="studentId"
                 pattern="b\d{10}"
                 title="Please enter a valid student ID starting with 'b' followed by 10 digits"
                 type="text"
@@ -129,6 +131,7 @@ export default function Profile() {
             <div className={styles.div}>
               <h5>Email</h5>
               <input
+                name="email"
                 pattern=".+@ku\.th"
                 title="Please enter a valid email address with domain @ku.th"
                 type="email"
