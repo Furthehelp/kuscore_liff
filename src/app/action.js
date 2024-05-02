@@ -9,35 +9,35 @@ export async function LinkAccount(formData) {
 
   console.log(displayName, studentId, email, userId);
 
-  const accessToken = process.env.LINE_ACCESS_TOKEN;
+  // const accessToken = process.env.LINE_ACCESS_TOKEN;
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${accessToken}`,
-  };
+  // const headers = {
+  //   "Content-Type": "application/json",
+  //   Authorization: `Bearer ${accessToken}`,
+  // };
 
-  const message = `displayName: ${displayName}\nstudentId: ${studentId}\nemail: ${email}`;
+  // const message = `displayName: ${displayName}\nstudentId: ${studentId}\nemail: ${email}`;
 
-  const body = {
-    to: userId,
-    messages: [
-      {
-        type: "text",
-        text: message,
-      },
-    ],
-  };
+  // const body = {
+  //   to: userId,
+  //   messages: [
+  //     {
+  //       type: "text",
+  //       text: message,
+  //     },
+  //   ],
+  // };
 
-  try {
-    const response = await axios.post(
-      "https://api.line.me/v2/bot/message/push",
-      body,
-      { headers }
-    );
-    console.log("Message sent successfully:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error sending message:", error);
-    throw error;
-  }
+  // try {
+  //   const response = await axios.post(
+  //     "https://api.line.me/v2/bot/message/push",
+  //     body,
+  //     { headers }
+  //   );
+  //   console.log("Message sent successfully:", response.data);
+  //   return response.data;
+  // } catch (error) {
+  //   console.error("Error sending message:", error);
+  //   throw error;
+  // }
 }
