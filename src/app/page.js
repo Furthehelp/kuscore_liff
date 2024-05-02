@@ -96,7 +96,7 @@ export default function Profile() {
                 name="displayName"
                 type="text"
                 className={`${styles.input}`}
-                // value={profile.displayName ? profile.displayName : " "}
+                value={profile.displayName ? profile.displayName : " "}
                 // onChange={(e) => setUsername(e.target.value)}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
@@ -144,7 +144,7 @@ export default function Profile() {
               />
             </div>
           </div>
-          <input type="text" name="userId" value={profile.userId} />
+          <input type="hidden" name="userId" value={profile.userId} />
           <button className={styles.btns} type="submit">
             Link Account
           </button>

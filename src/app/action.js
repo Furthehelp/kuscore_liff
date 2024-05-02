@@ -19,7 +19,7 @@ export async function LinkAccount(formData) {
   const message = `displayName: ${displayName}\nstudentId: ${studentId}\nemail: ${email}`;
 
   const body = {
-    to: userId, // Replace LINE_USER_ID with the recipient's LINE user ID
+    to: userId,
     messages: [
       {
         type: "text",
