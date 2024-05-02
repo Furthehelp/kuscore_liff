@@ -46,8 +46,9 @@ export default function Profile() {
       }
     }
     fetchProfile();
-    const { value } = document.querySelector("input");
-    const parent = document.querySelector("input").parentNode.parentNode;
+    const { value } = document.querySelector("input[name='displayName']");
+    const parent = document.querySelector("input[name='displayName']")
+      .parentNode.parentNode;
     if (value !== "") {
       parent.classList.add(styles.focus);
     }
@@ -96,17 +97,19 @@ export default function Profile() {
                 name="displayName"
                 type="text"
                 className={`${styles.input}`}
-                value={profile.displayName ? profile.displayName : " "}
-                // onChange={(e) => setUsername(e.target.value)}
+                defaultValue={
+                  profile.displayName ? profile.displayName : "Loading..."
+                }
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 required
+                disabled
               />
             </div>
           </div>
           <div className={`${styles.inputdiv} ${styles.one}`}>
             <div className={styles.i}>
-              <FontAwesomeIcon icon={faIdCard} />
+              <FontAwesomeIcon rel="preload" icon={faIdCard} />
             </div>
             <div className={styles.div}>
               <h5>Student ID</h5>
@@ -116,8 +119,6 @@ export default function Profile() {
                 title="Please enter a valid student ID starting with 'b' followed by 10 digits"
                 type="text"
                 className={styles.input}
-                // value={username}
-                // onChange={(e) => setUsername(e.target.value)}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 required
@@ -136,8 +137,6 @@ export default function Profile() {
                 title="Please enter a valid email address with domain @ku.th"
                 type="email"
                 className={styles.input}
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 required
@@ -145,12 +144,13 @@ export default function Profile() {
             </div>
           </div>
           <input type="hidden" name="userId" value={profile.userId} />
+          <input type="hidden" name="pictureUrl" value={profile.pictureUrl} />
           <button className={styles.btns} type="submit">
             Link Account
           </button>
           <div className="d-flex text-end">
             <Link href="/" className={styles.firstlink}>
-              ลืมรหัสผ่าน ?
+              FAQ ?
             </Link>
           </div>
         </form>

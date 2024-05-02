@@ -6,6 +6,7 @@ export async function LinkAccount(formData) {
   const studentId = formData.get("studentId");
   const email = formData.get("email");
   const userId = formData.get("userId");
+  const pictureUrl = formData.get("pictureUrl");
 
   const date = new Date();
 
@@ -24,8 +25,6 @@ export async function LinkAccount(formData) {
 
   const formattedDate = date.toLocaleDateString("th-TH", optionsDate);
   const formattedTime = date.toLocaleTimeString("th-TH", optionsTime);
-
-  console.log(displayName, studentId, email, userId);
 
   const accessToken = process.env.LINE_ACCESS_TOKEN;
 
@@ -72,7 +71,7 @@ export async function LinkAccount(formData) {
                 contents: [
                   {
                     type: "image",
-                    url: `${profile.pictureUrl}`,
+                    url: `${pictureUrl}`,
                     aspectMode: "cover",
                   },
                 ],
@@ -86,7 +85,7 @@ export async function LinkAccount(formData) {
                 contents: [
                   {
                     type: "text",
-                    text: `${profile.displayName}`,
+                    text: `${displayName}`,
                     size: "sm",
                     color: "#555555",
                     margin: "sm",
