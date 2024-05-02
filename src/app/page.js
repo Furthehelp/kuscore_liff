@@ -143,6 +143,7 @@ export default function Profile() {
               />
             </div>
           </div>
+          <input type="hidden" name="displayName" value={profile.displayName} />
           <input type="hidden" name="userId" value={profile.userId} />
           <input type="hidden" name="pictureUrl" value={profile.pictureUrl} />
           <button className={styles.btns} type="submit">
