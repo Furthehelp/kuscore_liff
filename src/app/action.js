@@ -173,12 +173,7 @@ export async function LinkAccount(formData) {
 
   const body = {
     to: userId,
-    messages: [
-      {
-        type: "text",
-        text: message,
-      },
-    ],
+    messages: message,
   };
 
   try {
