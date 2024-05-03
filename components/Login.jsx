@@ -26,7 +26,7 @@ export default function Login() {
   // Fetches LINE profile and updates state
   useEffect(() => {
     async function initializeLiff() {
-      const liff = await import("@line/liff");
+      const liff = (await import("@line/liff")).default;
       try {
         await liff.init({ liffId });
         if (!liff.isLoggedIn()) {

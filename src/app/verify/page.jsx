@@ -1,12 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { auth } from "../../../actions/auth";
+import { useRouter } from "next/navigation";
 
-export default function verify() {
+function Verify() {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get("token");
+  const router = useRouter();
+  const token = router.query?.token;
 
   useEffect(() => {
     if (token) {
@@ -75,3 +76,5 @@ export default function verify() {
     </>
   );
 }
+
+export default Verify;
