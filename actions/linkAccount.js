@@ -21,8 +21,9 @@ export async function linkAccount(studentId, email, profile) {
   const confirmationToken = crypto.randomBytes(64).toString("hex");
 
   // Format for DATETIME column
-  const current_time = new Date();
-  const expireTime = new Date(current_time.getTime() + 60 * 60 * 1000); // Add 1 hour in milliseconds
+  const current_time = new Date().toISOString().slice(0, 19) + "Z";
+  const convertTime = new Date(current_time); // Add 1 hour in milliseconds
+  const expireTime = new Date(convertTime.getTime() + 60 * 60 * 1000); // Add 1 hour in milliseconds
 
   try {
     // Check for existing email before insertion
@@ -66,7 +67,9 @@ export async function linkAccount(studentId, email, profile) {
     await query(userSql, userData);
     await query(tokenSql, tokenData);
 
-    sendEmail(email, confirmationToken);
+    const token = confirmationToken;
+
+    sendEmail(email, token);
 
     return {
       success: true,

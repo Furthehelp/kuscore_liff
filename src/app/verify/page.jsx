@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { auth } from "../../../actions/auth";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 function Verify() {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
-  const router = useRouter();
-  const token = router.query?.token;
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
   useEffect(() => {
     if (token) {
@@ -55,7 +55,7 @@ function Verify() {
           </div>
 
           <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col items-center">
-            <div className="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+            <div className="flex flex-col w-full justify-center overflow-y-hidden">
               <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center ">
                 {error && <p>{error}</p>}
                 {message && message}{" "}

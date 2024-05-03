@@ -148,7 +148,7 @@ export default function Login() {
                 alt={profile.displayName}
                 width={100}
                 height={100}
-                className="rounded-full"
+                style={{ borderRadius: "50%" }}
               />
             ) : (
               <Image src={avatar} alt="avatar" width={100} height={100} />
