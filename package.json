@@ -18,9 +18,13 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.8",
+    "crypto": "^1.0.1",
+    "mysql2": "^3.9.7",
     "next": "14.2.3",
+    "nodemailer": "^6.9.13",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sweetalert2": "^11.10.8"
   },
   "devDependencies": {
     "eslint": "^8",

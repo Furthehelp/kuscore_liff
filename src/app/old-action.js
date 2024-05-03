@@ -1,12 +1,15 @@
 "use server";
 import axios from "axios";
 
-export async function LinkAccount(formData) {
-  const displayName = formData.get("displayName");
+export async function LinkAccount(formData, displayName, userId, pictureUrl) {
   const studentId = formData.get("studentId");
   const email = formData.get("email");
-  const userId = formData.get("userId");
-  const pictureUrl = formData.get("pictureUrl");
+
+  console.log("displayName:", displayName);
+  console.log("studentId:", studentId);
+  console.log("email:", email);
+  console.log("userId:", userId);
+  console.log("pictureUrl:", pictureUrl);
 
   const date = new Date();
 
@@ -28,25 +31,6 @@ export async function LinkAccount(formData) {
 
   const accessToken = process.env.LINE_ACCESS_TOKEN;
 
-  console.log(
-    "displayName:",
-    displayName,
-    "studentId:",
-    studentId,
-    "email:",
-    email,
-    "userId:",
-    userId,
-    "pictureUrl:",
-    pictureUrl,
-    "formattedDate:",
-    formattedDate,
-    "formattedTime:",
-    formattedTime,
-    "accessToken:",
-    accessToken
-  );
-
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${accessToken}`,
@@ -54,7 +38,7 @@ export async function LinkAccount(formData) {
 
   const message = {
     type: "flex",
-    altText: "Flex Message",
+    altText: "KUScore Linked Successful!",
     contents: {
       type: "bubble",
       body: {
@@ -195,16 +179,16 @@ export async function LinkAccount(formData) {
     messages: [message],
   };
 
-  try {
-    const response = await axios.post(
-      "https://api.line.me/v2/bot/message/push",
-      body,
-      { headers }
-    );
-    console.log("Message sent successfully:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error sending message:", error);
-    throw error;
-  }
+  // try {
+  //   const response = await axios.post(
+  //     "https://api.line.me/v2/bot/message/push",
+  //     body,
+  //     { headers }
+  //   );
+  //   console.log("Message sent successfully:", response.data);
+  //   return response.data;
+  // } catch (error) {
+  //   console.error("Error sending message:", error);
+  //   throw error;
+  // }
 }
