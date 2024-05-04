@@ -21,7 +21,10 @@ export async function linkAccount(studentId, email, profile) {
   const confirmationToken = crypto.randomBytes(64).toString("hex");
 
   // Format for DATETIME column
+  const now = new Date(Date.now());
   const expireTime = new Date(Date.now() + 60 * 60 * 1000); // Add 1 hour in milliseconds
+  console.log("Now:", now);
+  console.log("Expire Time:", expireTime);
 
   try {
     // Check for existing email before insertion
@@ -67,7 +70,7 @@ export async function linkAccount(studentId, email, profile) {
 
     const token = confirmationToken;
 
-    sendEmail(email, token);
+    await sendEmail(email, token);
 
     return {
       success: true,
