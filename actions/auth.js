@@ -1,7 +1,11 @@
 "use server";
 import { query } from "@/../libs/database";
 
-export async function auth(token) {
+export async function auth() {
+  const url = new URL(req.url, `http://${req.headers.host}`); // Construct URL
+  const searchParams = url.searchParams; // Extract search params
+  const token = searchParams.get("token");
+
   try {
     const verificationResult = await verifyConfirmationToken(token);
     if (verificationResult.error) {
