@@ -1,11 +1,7 @@
 "use server";
 import { query } from "@/../libs/database";
 
-export async function auth() {
-  const url = new URL(req.url, `http://${req.headers.host}`); // Construct URL
-  const searchParams = url.searchParams; // Extract search params
-  const token = searchParams.get("token");
-
+export async function auth(token) {
   try {
     const verificationResult = await verifyConfirmationToken(token);
     if (verificationResult.error) {
@@ -15,7 +11,7 @@ export async function auth() {
     const email = verificationResult.email;
     await markAccountAsConfirmed(email);
 
-    return { message: `${email} has been confirmed` };
+    return { message: `${email} has been verified` };
   } catch (error) {
     console.error("Error verifying account:", error);
     if (error.message.includes("Invalid or expired confirmation token")) {

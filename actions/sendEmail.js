@@ -23,13 +23,6 @@ export async function sendEmail(email, token) {
         <a href="${confirmationUrl}">Confirm Account</a>
       `,
   };
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending confirmation email:", error);
-    } else {
-      console.log("Confirmation email sent:", info.response);
-    }
-  });
 
   try {
     await transporter.sendMail(mailOptions);
